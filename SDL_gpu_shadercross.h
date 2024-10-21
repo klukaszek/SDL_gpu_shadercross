@@ -694,13 +694,13 @@ static char *SDL_ShaderCross_INTERNAL_SPIRVToWGSL(const uint8_t *shader_data,
 static uint32_t *SDL_ShaderCross_INTERNAL_WGSLToSPIRV(const char *shader_data,
                                                       size_t shader_size,
                                                       size_t *out_size) {
-  uint32_t *spv = tint_wgsl_to_spv(shader_data, shader_size);
-  if (spv) {
-    // since spv is an array of uint32_t, we can get
-    // the size by taking strlen since they are both 4 bytes
-    *out_size = SDL_strlen((const char *)spv);
-    return spv;
-  }
+  /*uint32_t *spv = tint_wgsl_to_spv(shader_data, shader_size);*/
+  /*if (spv) {*/
+  /*  // since spv is an array of uint32_t, we can get*/
+  /*  // the size by taking strlen since they are both 4 bytes*/
+  /*  *out_size = SDL_strlen((const char *)spv);*/
+  /*  return spv;*/
+  /*}*/
   return NULL;
 }
 
@@ -722,7 +722,7 @@ void *SDL_ShaderCross_CompileFromWGSL(SDL_GPUDevice *device, void *createInfo,
   // More formats may be supported in the future, but for now I am
   // only supporting SPIR-V and WGSL.
   // We convert the WGSL code to SPIRV using Tint.
-  if (shader_formats & SDL_GPU_SHADERFORMAT_WGSL) {
+  if (shader_formats | SDL_GPU_SHADERFORMAT_WGSL) {
     if (isCompute) {
       return SDL_CreateGPUComputePipeline(
           device, (SDL_GPUComputePipelineCreateInfo *)createInfo);
