@@ -761,8 +761,9 @@ void *SDL_ShaderCross_CompileFromWGSL(SDL_GPUDevice *device, void *createInfo,
     // We can now send it to the SPIR-V compiler to get the SDL_GPUShader
     return SDL_ShaderCross_CompileFromSPIRV(device, &newCreateInfo, isCompute);
   } else {
-    SDL_SetError("SDL_ShaderCross_CompileFromWGSL: Unexpected SDL_GPUBackend when"
-                 " trying to compile WGSL.");
+    SDL_SetError(
+        "SDL_ShaderCross_CompileFromWGSL: Unexpected SDL_GPUBackend when"
+        " trying to compile WGSL.");
     return NULL;
   }
 
@@ -1128,6 +1129,21 @@ SDL_GPUShaderFormat SDL_ShaderCross_GetSPIRVShaderFormats() {
 }
 
 #endif /* SDL_GPU_SHADERCROSS_SPIRVCROSS */
+
+#if SDL_GPU_SHADERCROSS_WGSL
+
+SDL_GPUShaderFormat SDL_ShaderCross_GetWGSLShaderFormats() {
+  SDL_GPUShaderFormat supportedFormats = 0;
+
+  /* WGSL can always be output as-is with no preprocessing */
+  supportedFormats |= SDL_GPU_SHADERFORMAT_WGSL;
+
+  /* WGSL can be cross-compiled to SPIR-V */
+  // We really don't want to be doing this since WGSL -> SPV code kinda sucks
+  /*supportedFormats |= SDL_GPU_SHADERFORMAT_SPIRV;*/
+
+  return supportedFormats;
+}
 
 #if SDL_GPU_SHADERCROSS_HLSL
 
