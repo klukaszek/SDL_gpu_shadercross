@@ -1145,6 +1145,8 @@ SDL_GPUShaderFormat SDL_ShaderCross_GetWGSLShaderFormats() {
   return supportedFormats;
 }
 
+#endif /* SDL_GPU_SHADERCROSS_WGSL */
+
 #if SDL_GPU_SHADERCROSS_HLSL
 
 SDL_GPUShaderFormat SDL_ShaderCross_GetHLSLShaderFormats() {
