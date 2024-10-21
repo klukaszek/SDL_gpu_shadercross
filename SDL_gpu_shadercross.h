@@ -722,7 +722,7 @@ void *SDL_ShaderCross_CompileFromWGSL(SDL_GPUDevice *device, void *createInfo,
   // More formats may be supported in the future, but for now I am
   // only supporting SPIR-V and WGSL.
   // We convert the WGSL code to SPIRV using Tint.
-  if (shader_formats | SDL_GPU_SHADERFORMAT_WGSL) {
+  if (shader_formats & SDL_GPU_SHADERFORMAT_WGSL) {
     if (isCompute) {
       return SDL_CreateGPUComputePipeline(
           device, (SDL_GPUComputePipelineCreateInfo *)createInfo);
