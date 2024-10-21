@@ -679,9 +679,9 @@ static pfn_spvc_compiler_get_cleansed_entry_point_name
 extern void tint_initialize(void);
 extern char *tint_spv_to_wgsl(const uint8_t *shader_data,
                               const size_t shader_size);
-extern uint32_t *tint_wgsl_to_spv(const char *shader_data,
-                                  const size_t shader_size);
-
+/*extern uint32_t *tint_wgsl_to_spv(const char *shader_data,*/
+/*                                  const size_t shader_size);*/
+/**/
 static char *SDL_ShaderCross_INTERNAL_SPIRVToWGSL(const uint8_t *shader_data,
                                                   size_t shader_size) {
   char *wgsl = tint_spv_to_wgsl(shader_data, shader_size);
